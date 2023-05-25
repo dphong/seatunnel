@@ -34,6 +34,8 @@ public class DateTimeInjectFunction implements ClickhouseFieldInjectFunction {
             statement.setTimestamp(index, (Timestamp) value);
         } else if (value instanceof LocalDateTime) {
             statement.setObject(index, value);
+        } else if (value instanceof Integer || value instanceof Long) {
+            statement.setObject(index, value);
         } else {
             statement.setTimestamp(index, Timestamp.valueOf(value.toString()));
         }
